@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理系统</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="../../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css">
+		<script type="text/javascript" src="../../framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.css">
+		<script src="../../framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="../../framework/jquery.mousewheel.min.js"></script>
+		<script src="../../framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+	</head>
+
+	<body>
+		<div class="cBody">
+			<div class="console">
+				<form class="layui-form" action="">
+					<div class="layui-form-item">
+						<div class="layui-input-inline">
+							<input type="text" name="name" required lay-verify="required" placeholder="输入文件名" autocomplete="off" class="layui-input">
+						</div>
+						<button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
+					</div>
+				</form>
+			</div>
+			
+			<table class="layui-table">
+				<thead>
+					<tr>
+						<th><input type="checkbox" name="select" value="allselect">全选</th>
+						<th>文件名</th>
+						<th>备份日期</th>
+						<th>文件路径</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="checkbox" name="select" value="oneselect"></td>
+						<td>user1</td>
+						<td>2020-1-28</td>
+						<td>C:\</td>
+						<td>
+							<button class="layui-btn layui-btn-xs" onclick="recoverfile(this)">恢复</button>
+							<button class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</button>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="select" value="oneselect"></td>
+						<td>user1</td>
+						<td>2020-1-28</td>
+						<td>C:\</td>
+						<td>
+							<button class="layui-btn layui-btn-xs" onclick="recoverfile(this)">恢复</button>
+							<button class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</button>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="select" value="oneselect"></td>
+						<td>user1</td>
+						<td>2020-1-28</td>
+						<td>C:\</td>
+						<td>
+							<button class="layui-btn layui-btn-xs" onclick="recoverfile(this)">恢复</button>
+							<button class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<!-- layUI 分页模块 -->
+			<div id="pages"></div>
+			<script>
+				layui.use(['laypage', 'layer'], function() {
+					var laypage = layui.laypage,
+						layer = layui.layer;
+				
+					//总页数大于页码总数
+					laypage.render({
+					    elem: 'pages'
+					    ,count: 100
+					    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+					    ,jump: function(obj){
+					      console.log(obj)
+					    }
+					});
+				});
+				var updateFrame = null;
+				function recoverfile(_this){
+					layui.use('layer', function() {
+					});
+					
+				}
+				//删除
+				function delCustomList(_this){
+					layui.use(['form','laydate'], function() {
+						layer.confirm('确定要删除么？', {
+							btn: ['确定', '取消'] //按钮
+						}, function() {
+							$(_this).parent().parent().remove();
+							layer.msg('删除成功', {
+								icon: 1
+							});
+						}, function() {
+							layer.msg('取消删除', {
+								time: 2000 //20s后自动关闭
+							});
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+
+</html>

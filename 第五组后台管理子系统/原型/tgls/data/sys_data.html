@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理系统</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="../../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css">
+		<script type="text/javascript" src="../../framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.css">
+		<script src="../../framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="../../framework/jquery.mousewheel.min.js"></script>
+		<script src="../../framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+		
+		<style>
+			.layui-form{
+				margin-right: 30%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="cBody">
+			<div class="console">
+				<form class="layui-form" action="">
+					<div class="layui-form-item">
+						<div class="layui-input-inline">
+							<input type="text" name="name" required lay-verify="required" placeholder="输入博物馆名称" autocomplete="off" class="layui-input">
+						</div>
+						<button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
+					</div>
+				</form>
+			</div>
+			
+			<table class="layui-table">
+				<thead>
+					<tr>
+						<th>博物馆名称</th>
+                        <th>地址</th>
+                        <th>开馆时间</th>
+						<th>馆长</th>
+						<th>藏品数量</th>
+                        <th>联系方式</th>
+                        <th>官网</th>
+                        <th>简介</th>
+						<th>运营状态</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>BUCT校史馆</td>
+                        <td>樱花苑6号楼</td>
+                        <td>8:00-22:00</td>
+						<td>宋宜炜</td>
+						<td>27</td>
+						<td>10086</td>
+						<td><a target="_blank" href="https://tree.buct.edu.cn">tree.buct.edu.cn</a></td>
+						<td>无</td>
+						<td>营业中</td>
+						<td>
+                            <button class="layui-btn layui-btn-xs" onclick="updateBut(this)">修改</button>
+                            <button class="layui-btn layui-btn-xs" onclick="checkdata(this)">查看</button>
+							<button class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</button>
+						</td>
+					</tr>
+					<tr>
+						<td>清华校史馆</td>
+                        <td>樱花苑5号楼</td>
+                        <td>8:00-22:00</td>
+						<td>宋宜伟</td>
+						<td>27</td>
+						<td>10010</td>
+						<td><a target="_blank" href="https://www.bilibili.com">www.bilibili.com</a></td>
+						<td>无</td>
+						<td>停业</td>
+						<td>
+							<button class="layui-btn layui-btn-xs" onclick="updateBut(this)">修改</button>
+                            <button class="layui-btn layui-btn-xs" onclick="checkdata(this)">查看</button>
+							<button class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</button>
+						</td>
+					</tr>
+					<tr>
+						<td>北大校史馆</td>
+                        <td>樱花苑4号楼</td>
+                        <td>8:00-22:00</td>
+						<td>宋宜纬</td>
+						<td>27</td>
+						<td>10000</td>
+						<td><a>暂无官网</a></td>
+						<td>无</td>
+						<td>修建中</td>
+						<td>
+							<button class="layui-btn layui-btn-xs" onclick="updateBut(this)">修改</button>
+                            <button class="layui-btn layui-btn-xs" onclick="checkdata(this)">查看</button>
+							<button class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<!-- layUI 分页模块 -->
+			<div id="pages"></div>
+			<script>
+				layui.use(['laypage', 'layer'], function() {
+					var laypage = layui.laypage,
+						layer = layui.layer;
+				
+					//总页数大于页码总数
+					laypage.render({
+					    elem: 'pages'
+					    ,count: 100
+					    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+					    ,jump: function(obj){
+					      console.log(obj)
+					    }
+					});
+				});
+				var updateFrame = null;
+				function updateBut(_this){
+					layui.use('layer', function() {
+						var layer = layui.layer;
+							
+						//iframe层-父子操作
+						updateFrame = layer.open({
+                    		title: "修改博物馆信息",
+							type: 2,
+							area: ['70%', '60%'],
+							scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+							maxmin: true,
+							content: 'sys_data_updata.html'
+						});
+					});
+					
+                }
+                function checkdata(_this){
+                    layui.use('layer',function(){
+                        var layer = layui.layer;
+                        //iframe层-父子操作
+						updateFrame = layer.open({
+                    		title: "博物馆详细信息",
+							type: 2,
+							area: ['80%', '80%'],
+							scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+							maxmin: true,
+							content: 'museum_inventory.html'
+						});
+                    });
+                }
+				//删除
+				function delCustomList(_this){
+					layui.use(['form','laydate'], function() {
+						layer.confirm('确定要删除么？', {
+							btn: ['确定', '取消'] //按钮
+						}, function() {
+							$(_this).parent().parent().remove();
+							layer.msg('删除成功', {
+								icon: 1
+							});
+						}, function() {
+							layer.msg('取消删除', {
+								time: 2000 //20s后自动关闭
+							});
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理系统</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="../../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css">
+		<script type="text/javascript" src="../../framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.css">
+		<script src="../../framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="../../framework/jquery.mousewheel.min.js"></script>
+		<script src="../../framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+	</head>
+
+	<body>
+		<div class="cBody">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <div class="addRole">
+                        <form id="addForm" class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">角色名称</label>
+                                <div class="layui-input-inline shortInput">
+                                    <input type="text" name="roleName" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">权限</label>
+                                <div class="layui-input-block">
+                                    <input type="checkbox" name="jurisdiction" value="userManage" title="用户管理">
+                                    <input type="checkbox" name="jurisdiction" value="explain" title="讲解审核">
+                                    <input type="checkbox" name="jurisdiction" value="dataManage" title="数据管理">
+                                    <input type="checkbox" name="jurisdiction" value="data" title="数据备份和恢复">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="submitBut">添加角色</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </form>
+
+			<table class="layui-table">
+				<thead>
+					<tr>
+						<th>角色</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>普通用户</td>
+						<td>
+							<button class="layui-btn layui-btn-xs" onclick="updateBut()">修改</button>
+                            <button class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</button>
+						</td>
+					</tr>
+
+					<tr>
+						<td>管理员</td>
+						<td>
+							<button class="layui-btn layui-btn-xs" onclick="updateBut()">修改</button>
+                            <button class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</button>
+						</td>
+					</tr>
+
+					<tr>
+						<td>超级管理员</td>
+						<td>
+							<button class="layui-btn layui-btn-xs" onclick="updateBut()">修改</button>
+                            <button class="layui-btn layui-btn-xs" onclick="delCustomList(this)">删除</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<!-- layUI 分页模块 -->
+			<div id="pages"></div>
+			<script>
+				layui.use(['laypage', 'layer'], function() {
+					var laypage = layui.laypage,
+						layer = layui.layer;
+				
+					//总页数大于页码总数
+					laypage.render({
+					    elem: 'pages'
+					    ,count: 100
+					    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+					    ,jump: function(obj){
+					      console.log(obj)
+					    }
+					});
+				});
+				
+				var updateFrame = null;
+				function updateBut(){
+					layui.use('layer', function() {
+						var layer = layui.layer;
+						//iframe层-父子操作
+						updateFrame = layer.open({
+                    		title: "用户信息修改",
+							type: 2,
+							area: ['70%', '60%'],
+							scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+							maxmin: true,
+							content: 'role_updata.html'
+						});
+					});
+				}
+				
+				//删除
+				function delCustomList(_this){
+					layui.use(['form','laydate'], function() {
+						layer.confirm('确定要删除么？', {
+							btn: ['确定', '取消'] //按钮
+						}, function() {
+							$(_this).parent().parent().remove();
+							layer.msg('删除成功', {
+								icon: 1
+							});
+						}, function() {
+							layer.msg('取消删除', {
+								time: 2000 //20s后自动关闭
+							});
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理系统</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="../../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css">
+		<script type="text/javascript" src="../../framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.css">
+		<script src="../../framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="../../framework/jquery.mousewheel.min.js"></script>
+		<script src="../../framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+		
+		<style>
+			.layui-form-label{
+				width: 100px;
+			}
+			.layui-input-block{
+				margin-left: 130px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="cBody">
+			<form id="addForm" class="layui-form" action="">
+                <div class="layui-form-item">
+					<label class="layui-form-label">昵称</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="nickName" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label class="layui-form-label">账号</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="loginName" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label class="layui-form-label">密码</label>
+					<div class="layui-input-inline shortInput">
+						<input type="password" name="password" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+                <div class="layui-form-item">
+					<label class="layui-form-label">确认密码</label>
+					<div class="layui-input-inline shortInput">
+						<input type="password" name="password" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+                <div class="layui-form-item">
+					<label class="layui-form-label">电话</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="phone" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label class="layui-form-label">邮箱</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="email" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label class="layui-form-label">状态</label>
+					<div class="layui-input-block">
+						<input type="radio" name="state" value="normal" title="正常" checked>
+						<input type="radio" name="state" value="forbidden" title="禁言">
+						<input type="radio" name="state" value="disable" title="禁用">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label class="layui-form-label">角色</label>
+					<div class="layui-input-block">
+						<input type="radio" name="role" value="common" title="普通用户" checked>
+						<input type="radio" name="role" value="admin" title="管理员">
+						<input type="radio" name="role" value="superadmin" title="超级管理员">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit lay-filter="submitBut">立即提交</button>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+
+</html>

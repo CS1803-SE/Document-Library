@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理系统</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="../../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css">
+		<script type="text/javascript" src="../../framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.css">
+		<script src="../../framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="../../framework/jquery.mousewheel.min.js"></script>
+		<script src="../../framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+	</head>
+
+	<body>
+		<div class="cBody">
+            <table class="layui-table">
+                <thead>
+                    <tr>
+                        <th><a class="menuFA" href="museum_inventory.html">详细信息</a></th>
+                        <th><a class="menuFA" href="museum_remark.html">评论查看</a></th>
+                    </tr>
+                </thead>
+            </table>
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <div class="addRole">
+                        <form id="addForm" class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">名称</label>
+                                <label class="layui-form-label">博物馆名称</label>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">地址</label>
+                                <label class="layui-form-label">博物馆地址</label>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">藏品</label>
+                                <table class="layui-table">
+                                    <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>简介</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>A</td>
+                                            <td>简介1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>B</td>
+                                            <td>简介2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>C</td>
+                                            <td>简介3</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </form>
+			
+			<!-- layUI 分页模块 -->
+			<div id="pages"></div>
+			<script>
+				layui.use(['laypage', 'layer'], function() {
+					var laypage = layui.laypage,
+						layer = layui.layer;
+				
+					//总页数大于页码总数
+					laypage.render({
+					    elem: 'pages'
+                        ,count: 100
+                        
+					    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+					    ,jump: function(obj){
+					      console.log(obj)
+					    }
+					});
+				});
+			</script>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理系统</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="../../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css">
+		<script type="text/javascript" src="../../framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.css">
+		<script src="../../framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="../../framework/jquery.mousewheel.min.js"></script>
+		<script src="../../framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+        <style type="text/css">
+            * {font-size:12px;margin:0;}
+            body {background:#fff;}
+            form {margin:12px;}
+            input.file{
+                vertical-align:middle;
+                position:relative;
+                left:-218px;
+                filter:alpha(opacity=0);
+                opacity:0;
+                z-index:1;
+                *width:223px;
+            }
+             
+            form input.viewfile {
+                z-index:99;
+                border:1px solid #ccc;
+                padding:2px;
+                width:150px;
+                vertical-align:middle;
+                color:#999;
+            }
+             
+            form p span {
+                float:left;
+            }
+             
+            form label.bottom {
+                border:1px solid #38597a;
+                background:#4e7ba9;
+                color:#fff;
+                height:19px;
+                line-height:19px;
+                display:block;
+                width:60px;
+                text-align:center;
+                cursor:pointer;
+                float:left;
+                position:relative;
+                *top:1px;
+            }
+             
+            form input.submit {
+                border:0;
+                background:#380;
+                width:80px;
+                height:30px;
+                line-height:30px;
+                color:#fff;
+                cursor:pointer;
+            }
+             
+            p.clear {
+                clear:left;
+                margin-top:12px;
+            }
+        </style>                        
+	</head>
+
+	<body>
+		<div class="cBody">
+			<form action="Handler.ashx" method="post" name="upfiles" enctype="multipart/form-data">
+                <p>
+                    <span>
+                        <label for="viewfile">选择备份文件：</label>
+                        <input type="text" name="viewfile" id="viewfile" class="viewfile" />
+                    </span>
+                    <label for="upload" class="bottom">查找文件</label><input type="file" size="27" name="upload" οnchange="document.getElementById('viewfile').value=this.value;" class="file" />
+                </p>
+                <p class="clear"><input class="submit" type="submit" value="恢复数据库" /></p>
+            </form>                
+		</div>
+	</body>
+
+</html>
