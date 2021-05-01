@@ -1,2 +1,2 @@
 # jk1803SE
-for curriculculum design
+各类文档及每周周记
