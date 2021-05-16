@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>测试报告（博物馆网数据采集子系统）</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h3>一、导言</h3>
+<h4>1.目的</h4>
+<h5>该文档的目的是描述博物馆网站数据采集子系统经过测试的总结报告，其主要内容包括：</h5>
+<h6>系统自身情况测试</h6>
+<h6>系统使用情况测试</h6>
+<h5>本文档的预期读者是：</h5>
+<h6>项目管理人员</h6>
+<h6>测试人员</h6>
+<h4>2.范围</h4>
+<h5>该文档定义了系统测试的结果，测试了子系统数据采集、存储等基本功能，并给出了测试的结论以及解决办法。</h5>
+<h4>3.测试时间及人员</h4>
+<h5>本次测试的时间、地点和人员总结如下：</h5>
+<h6>测试时间：2021-5-10至2021-5-16</h6>
+<h6>人员：小组全体成员以及应用本组子系统的其他小组部分成员</h6>
+<h4>4.参考资料</h4>
+<h5>①《计算机软件文档编制规范》</h5>
+<h5>② 韩万江软件文档范例</h5>
+<h5>③ 孙家广学生文档范例</h5>
+<h3>二、系统自身情况测试</h3>
+<h4>本系统可进行Museum、Collection、Exhibition信息的爬取，通过start.py入口启动爬虫，并根据参数进行个性化爬取。</h4>
+<h4>1.启动入口</h4>
+<h5>为便于维护和保证信息的完整性，我们为每个网站的不同字段分别进行了爬虫文件的编写，爬虫文件数量较多，因此本系统提供了专门的启动入口便于一次性启动多个爬虫文件。</h5>
+<h5>爬虫的启动采用顺序和并发执行两种方案，顺序执行速度较慢，但爬取的信息完整度高，并发执行速度较快，但容易出现网络连接超时、内存溢出等问题，不能保证信息爬取的完整度。</h5>
+<pre><code>​顺序执行命令：python start.py 参数
+​并发执行命令：scrapy crawall（不推荐）
+</code></pre>
+
+<h4>2.爬取方式</h4>
+<h5>针对静态和动态的网页，我们的爬虫采用两种爬取方案，静态网页使用scrapy默认的爬取方式，动态网页使用selenium模拟chrome浏览器用户的操作触发动态网页的渲染后进行爬取。</h5>
+<h4>3.爬取测试</h4>
+<h5>①Museum基本信息</h5>
+<h5>a.Museum基本信息爬取测试（顺序执行）：</h5>
+<pre><code>运行命令：python start.py Museum
+</code></pre>
+
+<p><img src="https://gitee.com/zhu-an/picture-bed/raw/master/img/20210514133233.png" alt="image-20210514133226346" /></p>
+<pre><code>运行时间：155.21秒
+</code></pre>
+
+<h5>b.Museum基本信息爬取测试（并发执行）：</h5>
+<pre><code>运行命令：scrapy crawlall
+</code></pre>
+
+<p><img src="https://gitee.com/zhu-an/picture-bed/raw/master/img/20210514133541.png" alt="image-20210514133541714" /></p>
+<pre><code>运行时间：16.33秒
+</code></pre>
+
+<h5>②Collection藏品信息</h5>
+<h5>a.Collection藏品信息爬取测试（顺序执行）：</h5>
+<pre><code>运行命令：python start.py Collection
+</code></pre>
+
+<p><img src="https://gitee.com/zhu-an/picture-bed/raw/master/img/20210514141252.png" alt="image-20210514141252537" /></p>
+<pre><code>运行时间：1228.38秒
+</code></pre>
+
+<h5>b.Collection藏品信息爬取测试（并发执行）：</h5>
+<h5>该字段数据量较大，并发执行对数据库压力较大，容易导致time out丢失数据，且scrapy官方文档推荐使用CrawlerRunner顺序执行的方式运行多个爬虫，故不采用并发执行方案</h5>
+<h5>③Exhibition展览信息</h5>
+<h5>a.Exhibition展览信息爬取测试（顺序执行）：</h5>
+<pre><code>运行命令：python start.py Exhibition
+</code></pre>
+
+<p><img src="https://gitee.com/zhu-an/picture-bed/raw/master/img/20210514142013.png" alt="image-20210514142013087" /></p>
+<pre><code>运行时间：283.60秒
+</code></pre>
+
+<h5>b.Exhibition展览信息爬取测试（并发执行）：</h5>
+<h5>该字段数据量较大，并发执行对数据库压力较大，容易导致time out丢失数据，且scrapy官方文档推荐使用CrawlerRunner顺序执行的方式运行多个爬虫，故不采用并发执行方案</h5>
+<h4>4.All启动所有爬虫</h4>
+<h5>①All启动所有爬虫测试（顺序执行）：</h5>
+<pre><code>运行命令：python start.py All
+</code></pre>
+
+<p><img src="https://gitee.com/zhu-an/picture-bed/raw/master/img/20210514150102.png" alt="image-20210514150102155" /></p>
+<pre><code>运行时间：2341.07秒
+</code></pre>
+
+<h5>②All启动所有爬虫测试（并发执行）：</h5>
+<h5>该字段数据量较大，并发执行对数据库压力较大，容易导致time out丢失数据，且scrapy官方文档推荐使用CrawlerRunner顺序执行的方式运行多个爬虫，故不采用并发执行方案</h5>
+<h4>5.定时启动</h4>
+<h5>①windows平台：</h5>
+<pre><code>此电脑 → 管理 → 任务计划程序 → 创建基本任务
+创建任务定时运行入口文件即可
+</code></pre>
+
+<h5>②Linux平台：</h5>
+<pre><code>通过crontab创建定时任务定时执行入口文件即可
+</code></pre>
+
+<h5>crontab定时任务示例：</h5>
+<pre><code>#安装crontab
+yum install crontab
+#编辑crontab服务文件
+crontab -e
+#实现每月1号6:30定时执行所有爬虫脚本
+30 6 1 * * cd 工作目录/first_group &amp;&amp; python start.py All
+</code></pre>
+
+<h3>三、系统使用情况测试</h3>
+<h4>我们小组从其他组收到的反馈及相应处理措施如下:</h4>
+<h5>1.第三小组反馈博物馆名字符串含有不必要的'\n'和'\t'等字符，造成了页面布局不协调甚至出错。（如下图）</h5>
+<img src="https://i.loli.net/2021/05/13/VA7vqMSPbNHJZdz.jpg" alt="682a9665abd2f2128d2f04067438754e" style="zoom:50%;" />
+<h5>解决办法：</h5>
+<h5>使用正则表达式过滤该类字符，核心代码如下：</h5>
+<pre><code>import re
+
+class StrFilter:
+    # 过滤\n,\r,\t,[xxxx]
+    r1 = re.compile(u&quot;\\n|\\r|\\[.*?]|\\t&quot;)
+
+    @staticmethod
+    def filter(src):
+        res1 = re.sub(StrFilter.r1, &quot;&quot;, str(src))
+        res2 = str(''.join(res1.split()))
+        res3 = res2.replace(&quot; &quot;, &quot;&quot;)
+        return res3
+
+    @staticmethod
+    def filter_2(src):
+        return StrFilter.filter(src).replace('[', '').replace(']', '')
+</code></pre>
+
+<h4>2.第三小组反馈博物馆位置含有不必要的索引标记，如下图所示：</h4>
+<img src="https://i.loli.net/2021/05/13/CUHlgdE5zcTZVyJ.jpg" alt="94cfd7980fb1b16294d2ae9ece9dc167" style="zoom:50%;" />
+<h5>解决办法：</h5>
+<h5>使用正则表达式过滤该类字符，核心代码同<strong>反馈1</strong></h5>
+<h4>3.第三小组反馈部分博物馆开放时间有冗余字，希望删去。</h4>
+<img src="https://i.loli.net/2021/05/13/gETP2UxpbyoWuzk.jpg" alt="b34a0d7eb68f5eb2ccf1c4a77381d4eb" style="zoom:50%;" />
+<h5>解决办法：</h5>
+<h5>用正则表达式过滤中文字符，只保留数字和必需字符，核心代码如下：</h5>
+<pre><code>class StrFilter:
+    # 过滤中文
+    r2 = re.compile(r&quot;[\u4e00-\u9fa5]|\\(.*?)|（.*?）&quot;)
+
+    # Museum表consultationTelephone
+    @staticmethod
+    def filter_Telephone(src):
+        res = re.sub(StrFilter.r2, &quot;&quot;, str(src)).replace('：', '').replace(' ', '')
+        if len(res[0]) &gt;= 1 and res[0] == ':':
+            return res[1:]
+        return res
+</code></pre>
+
+<h4>4.第三小组反馈字段为空时返回内容不一致，有些为NULL，有些为空字符串，有些为'None'，造成如下问题：</h4>
+<img src="https://i.loli.net/2021/05/13/n9a6HVvt8sgJ7zi.jpg" alt="49ef1f0ec058fb94d7e2754dab0c5e94" style="zoom:50%;" /><img src="https://i.loli.net/2021/05/13/P9Gk8tvREfp4u1c.png" alt="Screenshot_2021_0513_200020" style="zoom:50%;" />
+<h5>解决办法：</h5>
+<h5>假设展览信息简介少于一定字符的均为无用信息，用”暂无介绍“代替，核心代码如下。</h5>
+<pre><code>exhibitionIntroduction = StrFilter.filter_2(row[3])
+        if len(exhibitionIntroduction) &lt;= 4:
+            exhibitionIntroduction = &quot;暂无介绍&quot;
+</code></pre>
+
+<h4>5.第三小组反馈返回图片链接时，掺杂了一两个无用链接。</h4>
+<img src="https://i.loli.net/2021/05/13/EG9QFInt8WfJg7j.png" alt="Screenshot_2021_0513_200903" style="zoom:50%;" />
+<h5>解决办法：</h5>
+<h5>把含有某些特征的链接全部转换成默认图片链接，核心代码如下：</h5>
+<pre><code>exhibitionImageLink = StrFilter.filter_2(row[6])
+        if len(exhibitionImageLink) &lt;= 6 or 'None' in exhibitionImageLink:
+            exhibitionImageLink = &quot;http://bucttalk.online/first_group/default.jpg&quot;
+</code></pre>
+
+<h3>四、测试评估</h3>
+<h4>本次测试执行准备充足，完成了既定目标。但由于经验以及对工具使用不熟练，因此对系统性能测试还有待提高和加强。</h4>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
